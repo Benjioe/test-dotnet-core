@@ -1,0 +1,8 @@
+<h3>Logs IIS</h3>
+<p>
+    L'affichage des logs IIS se fait via une simple configuration. <br />
+    On télécharge le paquet <strong>Microsoft.AspNetCore.Diagnostics.Elm</strong>.
+    Puis dans le fichier Startup.cs, dans la méthode ConfigureServices on ajoute <span class="code">services.AddElm();</span>, et <span>app.UseElmPage();<br />app.UseElmCapture();</span> dans la méthode configure.
+    L'accès aux logs se fait depuis l'url /elm
+</p>
+

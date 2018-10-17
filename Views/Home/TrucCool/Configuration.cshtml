@@ -1,0 +1,18 @@
+<h3>Configuration</h3>
+<p>
+    Il est possible d'ajouter son propre système de configuration qui va demander le recyclage du pool de l'application si celle-ci est modifié.<br />
+    Pou celà, on commance par télécherger le paquet nuget <strong>Microsoft.Extensions.Configuration</strong>.<br />
+    Puis dans le fichier Program.cs, méthode CreateWebHostBuilder on ajoute l'appel de la méthode ConfigureAppConfiguration.
+    
+</p>
+
+<code>
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =><br />
+    WebHost.CreateDefaultBuilder(args)<br />
+    <span class="code-modifie">.ConfigureAppConfiguration((context, builder) =><br />
+    {<br />
+    builder.AddJsonFile("ListTrucCool.json", optional: false, reloadOnChange: false);<br />
+    })<br /></span>
+    .UseStartup&&lt;Startup&&gt;();<br />
+    
+ </code>
