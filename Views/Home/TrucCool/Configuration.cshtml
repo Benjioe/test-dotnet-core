@@ -16,3 +16,17 @@
     .UseStartup&&lt;Startup&&gt;();<br />
     
  </code>
+
+
+<p>
+    Pour lire nos configuration, il suffis d'injecter le service IConfiguration.
+</p>
+
+<code>
+            public OneOfTrucCoolConstraint(IConfiguration configuration)
+            {
+
+                var sectionCOnfiguration = configuration.GetSection("TrucCools");
+                _ListTrucCool = sectionCOnfiguration.Get<string[]>();
+            }
+</code>

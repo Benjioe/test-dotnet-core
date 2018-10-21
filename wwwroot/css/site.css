@@ -36,7 +36,17 @@ body {
     }
 }
 
+code {
+    white-space: pre;
+}
+
 
 .code-modifie {
     font-weight: bold;
+}
+
+.truc-cool {
+    border: 1px solid black;
+    padding: 5px;
+    margin:3%;
 }

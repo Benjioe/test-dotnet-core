@@ -1,0 +1,41 @@
+<h2>Créer ses propres routes</h2>
+<p>
+    On implémente IConfiguration
+</p>
+<code>
+    class OneOfTrucCoolConstraint : IRouteConstraint
+        {
+            private readonly string[] _ListTrucCool;
+
+            public OneOfTrucCoolConstraint(IConfiguration configuration)
+            {
+
+                var sectionCOnfiguration = configuration.GetSection("TrucCools");
+                _ListTrucCool = sectionCOnfiguration.Get<string[]>();
+            }
+            
+            public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values,
+                RouteDirection routeDirection)
+            {
+                var param = values["name"];
+
+                return _ListTrucCool.Contains(param);
+            }
+        }
+</code>
+
+<p>Puis on définis la route utilisant cette contrainte</p>
+<code>
+    
+            app.UseMvc(routes =>
+            {
+                //Si le [name] est un TrucCool => appel Home/OneOfTrucCool/[name]
+                routes.MapRoute(
+                    name: "OneTrucCool",
+                    template: "TrucCool/{name=OneOfTrucCool}",
+                    defaults: new {controller = "Home", action = "OneOfTrucCool" },
+                    constraints: new {OneOfTrucCool = new OneOfTrucCoolConstraint(Configuration)}
+                );
+            });
+
+</code>

@@ -1,0 +1,7 @@
+@model string
+@addTagHelper *, test_dotnet_core
+@{
+    ViewData["Title"] = Model;
+}
+
+@await Component.InvokeAsync(nameof(SelectTrucCool), new { nameTrucCool = Model })

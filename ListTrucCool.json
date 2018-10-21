@@ -1,3 +1,14 @@
 {
-  "ListTrucCool": ["configuration", "validateur", "ViewComponent", "TestServer", "Formater", "Middelware", "ErrorPage", "Elm", "Route"]
+    "TrucCools": {
+        "Configuration": "TrucCool/Configuration", 
+        "Validateur":"TrucCool/Validateur",
+         "TagHelper":"TrucCool/TagHelper", 
+         "ViewComponent":"TrucCool/ViewComponent", 
+         "TestServer":"TrucCool/TestServer", 
+         "Formater":"TrucCool/Formater", 
+         "Middelware":"TrucCool/Middelware", 
+         "ErrorPage":"TrucCool/ErrorPage", 
+         "Elm":"TrucCool/Elm", 
+         "Route":"TrucCool/Route"
+    }
 }

@@ -58,33 +58,41 @@ namespace test_dotnet_core
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+
+            app.UseStatusCodePagesWithRedirects("~/{0}.html");
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                //Si le [name] est un TrucCool => appel Home/OneOfTrucCool/[name]
                 routes.MapRoute(
                     name: "OneTrucCool",
-                    template: "/{OneOfTrucCool}",
-                    defaults: new {controller="Home", action="OneOfTrucCool"},
-                    constraints: new {OneOfTrucCool=new OneOfTrucCoolConstraint()}
-                    )
+                    template: "TrucCool/{name=OneOfTrucCool}",
+                    defaults: new {controller = "Home", action = "OneOfTrucCool" },
+                    constraints: new {OneOfTrucCool = new OneOfTrucCoolConstraint(Configuration)}
+                );
             });
         }
 
         class OneOfTrucCoolConstraint : IRouteConstraint
         {
-            private readonly string _ListTrucCool;
+            private readonly string[] _ListTrucCool;
 
             public OneOfTrucCoolConstraint(IConfiguration configuration)
             {
-                _ListTrucCool = configuration["ListTrucCool"];
+
+                var sectionCOnfiguration = configuration.GetSection("TrucCools");
+                _ListTrucCool = sectionCOnfiguration.Get<Dictionary<string, string>>().Keys.ToArray();
             }
             
             public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values,
                 RouteDirection routeDirection)
             {
-                return true;
+                var param = values["name"];
+
+                return _ListTrucCool.Contains(param);
             }
         }
 
