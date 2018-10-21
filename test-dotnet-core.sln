@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test-dotnet-core", "test-dotnet-core.csproj", "{03CF085E-4B44-46C7-953C-A764D2AC9C45}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{3D5932FB-283A-45B6-8C27-EBFDC0726259}"
+	ProjectSection(SolutionItems) = preProject
+		ApplyGitignore.cmd = ApplyGitignore.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
